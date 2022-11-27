@@ -4,7 +4,7 @@ import "./Ship.sol";
 import 'hardhat/console.sol';
 
 /**
- * @title Contrat qui se représente un navire et ces méthodes
+ * @title Contrat qui représente un navire et ses méthodes
  */
 contract MyShip is Ship{
     uint actuelPos =0;
@@ -17,7 +17,7 @@ contract MyShip is Ship{
    uint x = 1;
    uint y = 1;
    uint decalage = 1;
-   //La grille du jeux : Je note la position de mon navire à true , tout ce qui est false est une cible. 
+   //La grille du jeu : Je mets la position de mon navire à true , tout ce qui est false est une cible. 
    bool [] grille;
    //Liste des positions des cibles 
    uint[] attackPos;
@@ -42,7 +42,7 @@ contract MyShip is Ship{
   }
   /**
    * @dev update fonction : change la position de notre navire et calcule les positions des adversaires.
-   * Paramètre : les coordonnées de la position actuelle du navire (x,y)
+   * Paramètres : les coordonnées de la position actuelle du navire (x,y)
    */
   function update(uint _x, uint _y) public override{
       uint randx =0;
@@ -57,9 +57,9 @@ contract MyShip is Ship{
       randx = uint(keccak256(abi.encodePacked(block.timestamp,gamerAdress,(_x+decalage)))) % width;
       randy = uint(keccak256(abi.encodePacked(block.timestamp,gamerAdress,_y))) % height;
       decalage++;
-      //La postion de la cible 
+      //La position de la cible 
       nextPos = (randx * randy)  * width;
-      console.log("La postion de la cible :",nextPos);
+      console.log("La position de la cible : ",nextPos);
       //Remplir un tableau de position cible qu'on va utiliser plus tard dans la fonction fire()
       while(nextPos > actuelPos && nextPos < width* height)
       {
@@ -73,7 +73,7 @@ contract MyShip is Ship{
   }
   /**
    * @dev La fonction place : positionne le navire dans la grille de façon aléatoire.
-   * paramètre : la longueur et la largeur de la grille
+   * Paramètres : la longueur et la largeur de la grille
    * return : les coordonner 2D du navire
    */
   function place(uint _width, uint _height) public override returns (uint, uint){
@@ -81,7 +81,7 @@ contract MyShip is Ship{
     {
       width = _width;
       height = _height;
-      //Generer les coordonner du navire de facon aleatoire
+      //Générer les coordonnées du navire de facon aléatoire
       x = uint(keccak256(abi.encodePacked(block.timestamp,gamerAdress,decalage))) % width;
       y = uint(keccak256(abi.encodePacked(block.timestamp,gamerAdress,decalage + numShip))) % height;
       //Calculer la position actuelle du navire 
@@ -98,7 +98,7 @@ contract MyShip is Ship{
     return (getX(),getY());     
   }
    /**
-   * @dev fonction fire : Attack une des position cible générer précédemment, en espérant que l'une d'elles soit
+   * @dev fonction fire : Attack une des position cible générée précédemment, en espérant que l'une d'elles soit
    * la position de l'adversaire
    * return : les coordonnées 2D de la cible 
    */
@@ -120,7 +120,7 @@ contract MyShip is Ship{
             //Vérifier que la cible est dans la grille 
             if(attackPos[i]!=0 && attackPos[i] < grille.length)
             {
-               //Vérifier que la cible ce n'est pas moi 
+               //Vérifier que la cible n'est pas moi 
                if(grille[attackPos[i]] == false)
                   {
                      if(((attackPos[i]/ width)/y) >0 && ((attackPos[i]/ width)/y) >0)
@@ -134,11 +134,11 @@ contract MyShip is Ship{
             }   
          }
       }
-      //Calculer la cible aléatoirement dans le cas où aucune des cibles pré-calculer ne convient
+      //Calculer la cible aléatoirement dans le cas où aucune des cibles pré-calculée ne convient
       while(randx == 0 || randy == 0)
       {
          uint i = 1;
-         //On utiliser le temps, l'adresse du joueur, et une valeur de décalage 
+         //On utilise le temps, l'adresse du joueur, et une valeur de décalage 
          randx = uint(keccak256(abi.encodePacked(block.timestamp,gamerAdress,i))) % width;
          randy = uint(keccak256(abi.encodePacked(block.timestamp,gamerAdress,i))) % height; 
          i++;
