@@ -16,3 +16,8 @@ Touché Coulé : l'idée du jeu est de combattre en chacun pour soi (tous les jo
     Positionne le navire dans la grille de façon aléatoire, il prend en paramètre la longueur et la largeur de la grille et retourne les coordonnées 2D du navire.
 - `fire` : 
     Attaque une des position cible générer précédemment dans update, en espérant que l'une d'elles soit la position de l'adversaire et retourne les coordonnées 2D de la cible.
+
+# Auteurs :
+MEHIDI Lisa
+ELABBASSI Nisrine
+NAVARRO Erwan
