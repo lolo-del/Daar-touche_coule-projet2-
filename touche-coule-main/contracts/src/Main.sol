@@ -60,7 +60,7 @@ contract Main {
   }
 
   /**
-   * @dev onction registerShip : Création d'un navire et utilise son adresse
+   * @dev  registerShip : Création d'un navire et utilise son adresse
    * pour appeler register qui s'occupe de son enregistrement
    */
   function registerShip()public{
@@ -73,7 +73,7 @@ contract Main {
   }
 
   /**
-   * @dev : Tire sur l'adversaire et vérifier l'état d grille et les résultats des différentes étapes.
+   * @dev turn : Tirer sur l'adversaire et vérifier l'état d grille et les résultats des différentes étapes.
    */
   function turn() public {
     //Annonce la fin de la partie 
@@ -110,7 +110,7 @@ contract Main {
     
   }
   /**
-   * @dev : fonction placeShip : positionne un navire dans la grille et le relier à un joueur.
+   * @dev  placeShip : Positionner un navire dans la grille et le relier à un joueur.
    * return : les coordonnées 2D du navire 
    */
   function placeShip(uint idx) internal returns (uint, uint) {
