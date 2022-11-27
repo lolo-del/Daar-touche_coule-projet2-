@@ -1,9 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.16;
 
+
 import './Ship.sol';
 import './MyShip.sol';
 import 'hardhat/console.sol';
+
 
 struct Game {
   uint height;
@@ -14,6 +16,7 @@ struct Game {
   mapping(uint => int) xs;
   mapping(uint => int) ys;
 }
+
 
 contract Main {
   Game private game;
@@ -33,6 +36,7 @@ contract Main {
     uint y
   );
  
+ 
   constructor() {
     game.width = 50;
     game.height = 50;
@@ -42,10 +46,13 @@ contract Main {
     emit Size(game.width, game.height);
   }
 
+
   /**
    * register : Ajout d'un navire au joueur qui déploie le contrat 
    * Paramètre : l'adresse du navire 
    */
+   
+   
   function register(address ship) public{
     require(count[msg.sender] < 2, 'Only two ships');
     require(!used[ship], 'Ship alread on the board');
@@ -59,10 +66,13 @@ contract Main {
     index += 1;
   }
 
+
   /**
    * @dev  registerShip : Création d'un navire et utilise son adresse
    * pour appeler register qui s'occupe de son enregistrement
    */
+   
+   
   function registerShip()public{
     require(count[msg.sender] < 2, 'Only two ships');
     require(index <= game.height * game.width, 'Too much ship on board');
@@ -72,9 +82,12 @@ contract Main {
     register(address(newShip));
   }
 
+
   /**
    * @dev turn : Tirer sur l'adversaire et vérifier l'état d grille et les résultats des différentes étapes.
    */
+   
+   
   function turn() public {
     //Annonce la fin de la partie 
     require(game.nbTourMax >0,"Fin de la partie");
@@ -86,9 +99,14 @@ contract Main {
       if (game.board[x][y] > 0) {
         touched[game.board[x][y]] = true;
       }    
+      
     }
+    
+    
     //Décrémenter le nombre de tours après chaque tire de tous les navires de la grille 
+    
     game.nbTourMax--;
+    
     for (uint i = 0; i < index; i++) {
       if (touched[i]) {
         MyShip ship = MyShip(ships[i]);
@@ -97,7 +115,9 @@ contract Main {
         {
           count[ships[i]]--;
         }
+        
         //Annoncer les joueurs qui ont perdu 
+        
         if(game.nbTourMax == 0 && count[ships[i]] == 0) 
         {
             console.log("le joueur  ",ships[i], " a perdu la partie");
@@ -109,10 +129,14 @@ contract Main {
     
     
   }
+  
+  
   /**
    * @dev  placeShip : Positionner un navire dans la grille et le relier à un joueur.
    * return : les coordonnées 2D du navire 
    */
+   
+   
   function placeShip(uint idx) internal returns (uint, uint) {
     Ship ship = MyShip(ships[idx]);
     (uint x, uint y) = ship.place(game.width, game.height);
@@ -130,6 +154,7 @@ contract Main {
         invalid = false;
       }
     }
+    
     return (x, y);
   }
 }
