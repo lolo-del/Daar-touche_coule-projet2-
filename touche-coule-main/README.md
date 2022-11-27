@@ -18,6 +18,6 @@ Touché Coulé : l'idée du jeu est de combattre en chacun pour soi (tous les jo
     Attaque une des position cible générer précédemment dans update, en espérant que l'une d'elles soit la position de l'adversaire et retourne les coordonnées 2D de la cible.
 
 # Auteurs :
-MEHIDI Lisa
-ELABBASSI Nisrine
+MEHIDI Lisa ;
+ELABBASSI Nisrine ;
 NAVARRO Erwan
