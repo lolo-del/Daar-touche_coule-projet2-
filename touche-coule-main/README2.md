@@ -5,7 +5,7 @@ Touché Coulé : l'idée du jeu est de combattre en chacun pour soi (tous les jo
 Indication du code .
 # Contrats intelligents :
 - `Main.sol` : Gère la mise en place des navires sur la grille et l'évolution des différentes parties du jeu, l'état des flottes des joueurs, et définit le nombre de parties du jeu.
-- `Ship.sol` : Regroupe les méthodes communes entre les defirent navires.
+- `Ship.sol` : Regroupe les méthodes communes entre les différents navires.
 - `MyShip.sol`: Représente le navire, ces coordonnées et fonctionnalités.
 - `Les fonctionnalités` :
 - `update` : 
